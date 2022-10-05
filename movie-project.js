@@ -7,16 +7,27 @@ const Movies = {
     getRequest(){
         return fetch(`${Movies.URL}`).then(resp => resp.json()).then(data => console.log(data));
     },
-    deleteOptions = {
-        method: 'DELETE',
+    editOptions: {
+        method: 'PUT',
         headers: {
             'Content-Type' : 'application/json'
         },
+        body: JSON.stringify(modification)
+    },
+    editRequest(){
+        fetch(Movies.URL + /*string with '/index'*/, Movies.editOptions).then(Movies.getRequest);
+    },
+    deleteOptions: {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
     deleteRequest(){
         fetch(Movies.URL + /*string with '/index'*/, Movies.deleteOptions).then(Movies.getRequest);
-    },
-
+    }
 }
+
 $.get()
 
     // Allow users to add new movies

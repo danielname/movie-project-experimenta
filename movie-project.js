@@ -37,10 +37,13 @@ const Movies = {
     // },
     async insertMovieCards(){
         try {
-            const movieArray = await Movies.getRequest();
+            let movieArray = await Movies.getRequest();
             console.log(movieArray)
+
             for (let movieArrayIndex = 0; movieArrayIndex < movieArray.length; movieArrayIndex++) {
                 if (movieArrayIndex === 0){
+                    console.log('yo')
+                    $('.carousel-indicators').html(`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`)
                 $('#movie-card-container').html(`<div class="card carousel-item active">
                   <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex space-between bg-dark text-light">
                     <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>
@@ -64,6 +67,7 @@ const Movies = {
                   </div>
                 </div>`)
                 } else {
+                    $('.carousel-indicators').html(`<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${movieArrayIndex}" aria-label="Slide ${movieArrayIndex + 1}"></button>`)
                     $('#movie-card-container').append(`<div class="card carousel-item">
                   <div id="card-${movieArray[movieArrayIndex].id}" class="d-flex space-between bg-dark text-light">
                     <h2 class="card-title me-auto">${movieArray[movieArrayIndex].title}</h2>

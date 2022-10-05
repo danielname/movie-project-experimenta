@@ -4,12 +4,16 @@
 // Make an AJAX request to get a listing of all the movies
 const Movies = {
     URL: 'https:fuchsia-almondine-fisher.glitch.me/movies',
-    getRequest: function(){
+    getRequest(){
         return fetch(`${Movies.URL}`).then(resp => resp.json()).then(data => console.log(data));
     },
-    deleteOptions = {}
-    deleteRequest() => {
-        fetch(Movies.URL + /*string with '/index'*/, deleteOptions).then(Movies.getRequest);
+    deleteOptions = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+    deleteRequest(){
+        fetch(Movies.URL + /*string with '/index'*/, Movies.deleteOptions).then(Movies.getRequest);
     },
 
 }

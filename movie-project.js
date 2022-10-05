@@ -7,39 +7,62 @@ const Movies = {
     getRequest(){
         return fetch(`${Movies.URL}`).then(resp => resp.json()).then(data => console.log(data));
     },
-    newMovieOptions: {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(/*new movie reference*/)
-    },
-    newMovieRequest(){
-        return fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
-    },
-    editOptions: {
-        method: 'PUT',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(modification)
-    },
-    editRequest(){
-        return fetch(Movies.URL + /*string with '/data-id'*/, Movies.editOptions).then(Movies.getRequest);
-    },
-    deleteOptions: {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    },
-    deleteRequest(){
-        return fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
+    // newMovieOptions: {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type' : 'application/json'
+    //     },
+    //     body: JSON.stringify(/*new movie reference*/)
+    // },
+    // newMovieRequest(){
+    //     fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
+    // },
+    // editOptions: {
+    //     method: 'PUT',
+    //     headers: {
+    //         'Content-Type' : 'application/json'
+    //     },
+    //     body: JSON.stringify(modification)
+    // },
+    // editRequest(){
+    //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.editOptions).then(Movies.getRequest);
+    // },
+    // deleteOptions: {
+    //     method: 'DELETE',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // },
+    // deleteRequest(){
+    //     fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
+    // },
+    insertMovieCards(){
+    $('#movie-card-container').html(`<div class="card carousel-item">
+        <div id="card-${Movie.getRequest().id}" class="d-flex space-between bg-dark text-light">
+          <h2 class="card-title me-auto">${Movie.getRequest().title.toUpperCase()}</h2>
+          <div id="movie rating" class="me-auto">
+            ***** (${Movie.getRequest().rating}/ 5)
+          </div>
+          <div class="dropdownmenu">
+      <button class="dropbutton" id="m-current-city">
+        OPTIONS
+      </button>
+      <div id="Dropdown" class="dropdownmenu-content">
+        <ul>
+            <li>Edit</li>
+            <li>Delete</li>
+        </ul>
+      </div>
+        </div>
+        <img class="card-img-top" src=${Movie.getRequest().poster} alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">${Movie.getRequest().title.toUpperCase()} will be coming soon to a theatre near you! <br> ${Movie.getRequest().plot}</p>
+        </div>
+      </div>`)
     }
 }
 
-$.get()
-
+Movies.insertMovieCards();
     // Allow users to add new movies
 // Create a form for adding a new movie that has fields for the movie's title and rating
 // When the form is submitted, the page should not reload / refresh, instead, your javascript should make a POST request to /movies with the information the user put into the form

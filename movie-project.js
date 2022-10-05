@@ -7,6 +7,16 @@ const Movies = {
     getRequest(){
         return fetch(`${Movies.URL}`).then(resp => resp.json()).then(data => console.log(data));
     },
+    newMovieOptions: {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(/*new movie reference*/)
+    },
+    newMovieRequest(){
+        return fetch(Movies.URL, Movies.newMovieOptions).then(Movies.getRequest);
+    },
     editOptions: {
         method: 'PUT',
         headers: {
@@ -15,7 +25,7 @@ const Movies = {
         body: JSON.stringify(modification)
     },
     editRequest(){
-        fetch(Movies.URL + /*string with '/index'*/, Movies.editOptions).then(Movies.getRequest);
+        return fetch(Movies.URL + /*string with '/data-id'*/, Movies.editOptions).then(Movies.getRequest);
     },
     deleteOptions: {
         method: 'DELETE',
@@ -24,7 +34,7 @@ const Movies = {
         }
     },
     deleteRequest(){
-        fetch(Movies.URL + /*string with '/index'*/, Movies.deleteOptions).then(Movies.getRequest);
+        return fetch(Movies.URL + /*string with '/data-id'*/, Movies.deleteOptions).then(Movies.getRequest);
     }
 }
 

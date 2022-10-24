@@ -1,8 +1,18 @@
 $(function(){
 
     const CRUD = {
-        Get(){
+        GetGlitch(){
             $.get(DATA.URL.glitch).done(function(data){
+                console.log(data);
+            });
+        },
+        GetOmdb(){
+            $.get(DATA.URL.omdb).done(function(data){
+                console.log(data);
+            });
+        },
+        GetTmdb(){
+            $.get(DATA.URL.tmdb).done(function(data){
                 console.log(data);
             });
         },
@@ -59,7 +69,7 @@ $(function(){
         URL: {
             glitch: 'https://fuchsia-almondine-fisher.glitch.me/movies',
             omdb: `http://www.omdbapi.com/?i=tt3896198&apikey=${omdbKey}`,
-            tmbd: `https://api.themoviedb.org/3/movie/550?api_key=${tmdbKey}`
+            tmdb: `https://api.themoviedb.org/3/movie/550?api_key=${tmdbKey}`
         }
         // i have to have a way to access this from created content
         // i have to be able to individually tweak any field
